@@ -11,4 +11,19 @@
 # }
 
 import os
+import sys
 import boto3
+import json
+
+esource = sys.stdin.read()
+source = json.loads(esource)
+
+
+
+aws_region = source['source']['aws_region']
+aws_access_key_id = source['source']['aws_access_key_id']
+aws_secret_access_key = source['source']['aws_secret_access_key']
+table_name = source['source']['table_name']
+
+print(json.dumps(source), file=sys.stderr)
+# print("AWS Region is: {}".format(aws_region))
