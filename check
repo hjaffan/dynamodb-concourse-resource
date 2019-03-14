@@ -1,0 +1,14 @@
+#!/usr/bin/env python
+
+# {
+#   "source": {
+#     "aws_region": "...",
+#     "aws_access_key_id": "..."
+#     "aws_secret_access_key": "...",
+#     "table_name": "..."
+#   },
+#   "version": { "id": 1423 }
+# }
+
+import os
+import boto3

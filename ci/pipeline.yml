@@ -1,0 +1,27 @@
+---
+jobs:
+- name: build-basic-image
+  public: true
+  serial: true
+  plan:
+  - get: dynamodb-concourse-repo
+    trigger: true
+  - put: docker-image
+    params:
+      build: dynamodb-concourse-repo
+
+resources:
+- name: dynamodb-concourse-repo
+  type: git
+  source:
+    uri: git@github.com:hjaffan/dynamodb-concourse-resource.git
+    branch: master
+    private_key: ((github.private_key))
+
+- name: docker-image
+  type: docker-image
+  source:
+    email: {{docker-hub-email}}
+    username: ((docker.username))
+    password: ((docker.password))
+    repository: hjaffan/dynamodb-concourse-resource
